@@ -13,7 +13,7 @@ def index():
 
     '''
     message = "Hello"
-    title = 'LORA PITCH-APP'
+    title = 'ELEVATOR PITCH-APP'
     return render_template('index.html', message=message, title=title)
 
 
@@ -40,9 +40,9 @@ def new_pitch():
 
 @main.route('/categories/<cate>')
 def category(cate):
-    '''
+    """
     function to return the pitches by category
-    '''
+    """
     category = Pitches.get_pitches(cate)
 
     title = f'{cate}'
@@ -93,11 +93,11 @@ def update_pic(uname):
 
 @main.route('/comments/<id>')
 @login_required
-def comment(id):
+def comment(comment_id):
     '''
     function to return the comments
     '''
-    com = Comments.get_comment(id)
+    com = Comments.get_comment(comment_id)
     # print(com)
     title = 'Pitch Comments'
     return render_template('comments.html', comment=com, title=title)
