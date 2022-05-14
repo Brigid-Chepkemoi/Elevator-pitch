@@ -4,8 +4,8 @@ import os
 class Config:
     SECRET_KEY = 'peeiicdjghsbnasgfwgfbwejhreirmd'
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://brie:Brie1240@localhost/pitches'
-    # SQLALCHEMY_DATABASE_URI = 'postgres://eefvuyzaqztftv:ad1b1a3fec78e2ef63f6f5d77906fe9657a3eb89725b31e8845639389cbdee66@ec2-54-158-247-210.compute-1.amazonaws.com:5432/d7bf9drp975ag7'
+    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://brie:Brie1240@localhost/pitches'
+    SQLALCHEMY_DATABASE_URI = 'postgres://dvadmddscfveme:5cfb6b05a5f67570f5c16fd5a7f389df480f07fe54f38789fe4af0f056979f8b@ec2-54-165-184-219.compute-1.amazonaws.com:5432/dd4vf49s96dk0s'
     UPLOADED_PHOTOS_DEST='app/static/photos'
 
     #  email configurations
@@ -35,6 +35,7 @@ class ProdConfig(Config):
 
         SQLALCHEMY_DATABASE_URI = uri
 
+DEBUG = True
 
 class TestConfig(Config):
     pass
@@ -47,7 +48,7 @@ class DevConfig(Config):
     Config: The parent configuration class with General configuration settings
     """
 
-    DEBUG = True
+
 
 
 config_options = {
