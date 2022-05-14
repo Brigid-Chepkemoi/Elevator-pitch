@@ -6,7 +6,7 @@ from .. import db, photos
 from .forms import PitchForm, CommentForm, UpdateProfile
 
 
-@main.route('/')
+@main.route('/', methods=["GET"])
 def index():
     '''
     index page
@@ -38,7 +38,7 @@ def new_pitch():
     return render_template('pitch.html', pitch_entry=form)
 
 
-@main.route('/categories/<cate>')
+@main.route('/categories/<cate>', methods=["GET"])
 def category(cate):
     """
     function to return the pitches by category
@@ -49,7 +49,7 @@ def category(cate):
     return render_template('categories.html', title=title, category=category)
 
 
-@main.route('/user/<uname>')
+@main.route('/user/<uname>', methods=["GET"])
 def profile(uname):
     user = User.query.filter_by(author=uname).first()
 
@@ -91,7 +91,7 @@ def update_pic(uname):
     return redirect(url_for('main.profile', uname=uname))
 
 
-@main.route('/comments/<id>')
+@main.route('/comments/<id>', methods=["GET"])
 @login_required
 def comment(comment_id):
     '''
