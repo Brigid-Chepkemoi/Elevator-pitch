@@ -1,7 +1,8 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin, current_user, login_manager
-
+from flask_login import UserMixin, current_user
+from . import login_manager
 from datetime import datetime
+from . import db
 
 
 @login_manager.user_loader
@@ -22,7 +23,7 @@ class User(UserMixin, db.Model):
 
     @property
     def password(self):
-        raise AttributeError('You cannot read the password attribute')
+        raise AttributeError('You cannnot read the password attribute')
 
     @password.setter
     def password(self, password):
@@ -78,11 +79,11 @@ class Comments(db.Model):
     def __repr__(self):
         return f"Comments('{self.comment}', '{self.date_posted}')"
 
-class Upvote(db.Model):
 
+class Upvote(db.Model):
     __tablename__ = 'upvotes'
-    id = db.Column(db.Integer, primary_key = True)
-    upvote = db.Column(db.Integer, default = 1)
+    id = db.Column(db.Integer, primary_key=True)
+    upvote = db.Column(db.Integer, default=1)
     pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
@@ -90,8 +91,8 @@ class Upvote(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    def add_upvotes(cls,id):
-        upvote_pitch = Upvote(user = current_user, pitch_id=id)
+    def add_upvotes(cls, id):
+        upvote_pitch = Upvote(user=current_user, pitch_id=id)
         upvote_pitch.save_upvotes()
 
     @classmethod
@@ -107,9 +108,10 @@ class Upvote(db.Model):
     def __repr__(self):
         return f'{self.user_id}: {self.pitch_id}'
 
+
 class Downvote(db.Model):
     __tablename__ = 'downvotes'
-    id = db.Column(db.Integer, primary_key = True)
+    id = db.Column(db.Integer, primary_key=True)
     downvote = db.Column(db.Integer, default=1)
     pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -119,12 +121,12 @@ class Downvote(db.Model):
         db.session.commit()
 
     def add_downvotes(cls, id):
-        downvote_pitch = Downvote(user = current_user, pitch_id = id)
+        downvote_pitch = Downvote(user=current_user, pitch_id=id)
         downvote_pitch.save_downvotes()
 
     @classmethod
     def get_downvotes(cls, id):
-        downvote = Downvote.query.filter_by(pitch_id = id).all()
+        downvote = Downvote.query.filter_by(pitch_id=id).all()
         return downvote
 
     @classmethod
