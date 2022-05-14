@@ -57,6 +57,10 @@ class Pitches(db.Model):
 
     @classmethod
     def get_pitches(cls, cate):
+        """
+
+        :rtype: object
+        """
         pitch = Pitches.query.filter_by(category=cate).all()
         return pitch
 
