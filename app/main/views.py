@@ -13,7 +13,7 @@ def index():
 
     '''
     message = "Hello"
-    title = 'ELEVATOR PITCH-APP'
+    title = 'PITCH PERFECT'
     return render_template('index.html', message=message, title=title)
 
 

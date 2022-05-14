@@ -33,7 +33,7 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        mail_message("Welcome to Elevator PItch Hub!", "email/welcome_user", user.email, user=user)
+        mail_message("Welcome to PITCH PERFECT!", "email/welcome_user", user.email, user=user)
 
         title = "New Account"
 
