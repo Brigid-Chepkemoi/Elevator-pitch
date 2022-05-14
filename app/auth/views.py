@@ -18,7 +18,7 @@ def login():
 
         flash('Invalid author or Password')
 
-    title = " SiR FELIX Pitches login"
+    title = " Elevator Pitches login"
     return render_template('auth/login.html', login_form=login_form, title=title)
 
 
@@ -33,7 +33,7 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        mail_message("Welcome to SiR FELIX PItch Hub!", "email/welcome_user", user.email, user=user)
+        mail_message("Welcome to Elevator PItch Hub!", "email/welcome_user", user.email, user=user)
 
         title = "New Account"
 

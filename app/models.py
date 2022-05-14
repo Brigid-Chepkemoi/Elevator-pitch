@@ -23,7 +23,7 @@ class User(UserMixin, db.Model):
 
     @property
     def password(self):
-        raise AttributeError('You cannnot read the password attribute')
+        raise AttributeError('You cannot read the password attribute')
 
     @password.setter
     def password(self, password):
@@ -34,6 +34,11 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return f'Author: {self.author}'
+
+    def __int__(self, mail, author, password):
+        self.mail = mail
+        self.author = author
+        self.password = password
 
 
 class Pitches(db.Model):
